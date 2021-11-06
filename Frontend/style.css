@@ -1,0 +1,44 @@
+body,html{
+    height:100%;
+    margin:0;
+}
+.check-in{
+  font-style: 'Open Sans';
+  font-size: 50px;
+  background-color: slateblue;
+}
+.background{
+    background: seashell;
+    height: 100%;
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+}
+.button1{
+    width: 100px;
+  
+    background:linear-gradient(-60deg, #8c1d40 50%, #ffc627 50%);
+
+}
+
+.button2{
+    position: relative;left: 540px; top: -290px;
+    font-style: 'Open Sans';
+    font-size: 25px;
+
+}
+
+ .circle{
+     
+    width: 100px;
+    height: 100px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 50px;
+    background: linear-gradient(-60deg, #8c1d40 50%, #ffc627 50%);
+    position: relative; left: 600px; top: -225px;
+ }
+
+ .loading{
+   position: relative; left:525px; top:-275px;
+ }
