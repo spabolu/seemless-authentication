@@ -22,7 +22,7 @@ body,html{
 }
 
 .button2{
-    position: relative;left: 540px; top: -290px;
+    position: relative;left: 540px; top: -570px;
     font-style: 'Open Sans';
     font-size: 25px;
 
@@ -38,7 +38,11 @@ body,html{
     background: linear-gradient(-60deg, #8c1d40 50%, #ffc627 50%);
     position: relative; left: 600px; top: -225px;
  }
+.Sparky{
+  position: relative; left:800px; top:-400px;
+}
+
 
  .loading{
-   position: relative; left:525px; top:-275px;
+   position: relative; left:500px; top:-550px;
  }
