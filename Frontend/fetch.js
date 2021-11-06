@@ -8,6 +8,9 @@ function onScanSuccess(decodedText, decodedResult) {
         lastResult = decodedText;
         
         console.log(`Code matched = ${decodedText}`, decodedResult);
+        let encryptedID = sha256(decodedText);
+        sendDining(encryptedID);
+        sendEvent(encryptedID);
     }
 }
 
@@ -31,12 +34,12 @@ async function sha256(ID) {
     return hashHex;
 }
 
-const sendDining = () => {
+const sendDining = (encryptedID) => {
 
     axios.post(url +
         '/checkDiningHallBalance',
         {
-            "userHash": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+            "userHash": encryptedID
         },
         {
             headers: {
@@ -59,12 +62,12 @@ const sendDining = () => {
         });
 };
 
-const sendEvent = () => {
+const sendEvent = (encryptedID) => {
     let eventType = 'Club Event'
     axios.post(url +
         '/allowedToEnter',
         {
-            "userHash": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce",
+            "userHash": encryptedID,
             "event": eventType // Sport Event, Club Event, SDFC
         },
         {

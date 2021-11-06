@@ -1,0 +1,6 @@
+POST https://kfpdqk0mz7.execute-api.us-west-2.amazonaws.com/checkDiningHallBalance
+content-type: application/json
+
+{
+    "userHash": "4e07408562bedb8b60ce5c1decfe3ad16b72230967de01f640b7e4729b49fce"
+}
