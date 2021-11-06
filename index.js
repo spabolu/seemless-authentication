@@ -1,1 +1,3 @@
-index.js
+exports.handler = async (event) => {
+    
+};
