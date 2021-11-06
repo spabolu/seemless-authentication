@@ -9,14 +9,22 @@
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="fetch.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <section id="control-center">
-        <button id="get-btn">GET Data</button>
-        <button id="post-btn">POST Data</button>
-      </section>
-      <div id="reader" width="600px"></div>
+        
+      
+      <h1 class="check-in">Check-in here</h1>
+      <h1>Have your QR code ready.</h1>
+      <div id="reader" width="600px" ></div>
+      <img class="image-Phone" src="https://static.thenounproject.com/png/2956127-200.png" alt="Phone with a QR code" width="300" height="300">
+
+      <img class="Sparky" src="https://media.discordapp.net/attachments/705826196780482621/906667077576851506/IMG_4176.jpeg" alt="Picture of Sparky (ASU Mascot) with students" width="400" height="400">
+      <h1 class="loading"></h1>  
+      <h1 class="output">Allowed</h1> 
+    </section>
 
       <script>function onScanSuccess(decodedText, decodedResult) {
         // handle the scanned code as you like, for example:

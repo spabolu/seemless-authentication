@@ -10,7 +10,7 @@ var circleTiming = {
 }
 
 function pageRedirect(){
-    window.location.replace("connection.html");
+    window.location.replace("requests.html");
 }
 function rotateCircle(){
     document.querySelector('.button2').style.visibility = "hidden";
@@ -19,5 +19,6 @@ function rotateCircle(){
         circleRotation,
         circleTiming
     )
-    setTimeout("pageRedirect()", 5000);
+    setTimeout("pageRedirect()", 3000);
 }
+
