@@ -1,5 +1,5 @@
-const postE = document.getElementById('post-event');
-const postD = document.getElementById('post-dining');
+// const postE = document.getElementById('post-event');
+// const postD = document.getElementById('post-dining');
 
 const url = 'https://kfpdqk0mz7.execute-api.us-west-2.amazonaws.com';
 let encryptedID = '';
@@ -15,12 +15,10 @@ function onScanSuccess(decodedText, decodedResult) {
 			resolve(encryptedID = sha256(decodedText));
 		})
 		myPromise
-			.then(sendDining(encryptedID));
+			// .then(sendDining(encryptedID));
+			.then(sendEvent(encryptedID));
 		//console.log(typeof sha256(decodedText));
 		//encryptedID = sha256(decodedText);
-
-		// sendDining(encryptedID);
-		//sendEvent(encryptedID);
 	}
 }
 
@@ -34,8 +32,8 @@ let html5QrcodeScanner = new Html5QrcodeScanner(
 	"qrInterface", {
 		fps: 10,
 		qrbox: {
-			width: 250,
-			height: 250
+			width: 300,
+			height: 300
 		}
 	},
 	/* verbose= */
@@ -198,6 +196,12 @@ const sendEvent = (encryptedID) => {
 
 	console.log("userHash: " + encryptedID + "\n" +
 		"event: " + eventType)
+
+	const x = setTimeout(() => {
+		document.getElementById("name").innerHTML = 'Waiting to be scanned...';
+		document.getElementById("event").innerHTML = '';
+		document.getElementById("msg").innerHTML = '';
+	}, 5000);
 	axios.post(url +
 			'/allowedToEnter', {
 				"userHash": encryptedID,
@@ -211,24 +215,33 @@ const sendEvent = (encryptedID) => {
 		)
 		.then(response => {
 			// console.log(response);
-			console.log('Welcome to ASU ' + eventType + '\n')
+			console.log('Welcome to ASU ' + eventType + '\n');
+			document.getElementById('event').innerHTML = "Welcome to ASU " + eventType;
+
 			console.log("Name: " + response.data[0].name);
+			document.getElementById('name').innerHTML = "Name: " + response.data[0].name;
 			if (response.data[0].E === 200) { // 200 code stands for successful response
 				if (response.data[0].Vaccinated == true) { // checking if the user is vaccinated or not
 					console.info("Access Allowed. Enjoy your event!")
+					document.getElementById("msg").innerHTML = "Access Allowed. Enjoy your event!"
 				} else {
-					console.info("You don't fulfill the event requirments to enter in. Please check your MY ASU app for more information.");
+					console.info("You don't fulfill the event requirments to enter. Check MY ASU app for more information.");
+					document.getElementById("msg").innerHTML = "You don't fulfill the event requirments to enter. Check MY ASU app for more information."
 				}
 			} else if (response.data[0].E === 407) { // 407 code stands for not allowed into this specific-event
-				console.log("Don't have access to this event. Check the front desk.")
+				console.log("You are not registered for this event. Please register at the front desk.")
+				document.getElementById("msg").innerHTML = "You are not registered for this event. Please register at the front desk."
 			} else {
 				console.log("User not found. Please try again or check with the front desk.")
+				document.getElementById("msg").innerHTML = "User not found. Please try again or check with the front desk."
+				x();
 			}
+
 		})
 		.catch(err => {
 			console.log(err, err.response);
 		});
 };
 
-postE.addEventListener('click', sendDining);
-postD.addEventListener('click', sendEvent);
+// postE.addEventListener('click', sendDining);
+// postD.addEventListener('click', sendEvent);
