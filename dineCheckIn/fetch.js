@@ -1,5 +1,5 @@
-const postE = document.getElementById('post-event');
-const postD = document.getElementById('post-dining');
+// const postE = document.getElementById('post-event');
+// const postD = document.getElementById('post-dining');
 
 const url = 'https://kfpdqk0mz7.execute-api.us-west-2.amazonaws.com';
 let encryptedID = '';
@@ -175,12 +175,25 @@ const sendDining = (encryptedID) => {
 				document.getElementById("name").innerHTML = name;
 
 				if (swipes != 0) {
-					// console.log("Meal Swipes Left: " + swipes);
+					swipes--
+					console.log("Meal Swipes Left: " + swipes);
 					document.getElementById("swipes").innerHTML = 'Swipes Left: ' + swipes;
 
 					msg = "Today's special includes Spicy Chicken, Paneer Masala and Poke Bowls"
-					// console.log(msg)
+					console.log(msg)
 					document.getElementById("msg").innerHTML = msg;
+
+					axios.post(url + '/changeDiningHallBalance', {
+						"userHash" : encryptedID
+					}, {
+						headers: {
+							'Content-Type': 'application/json',
+							'Access-Control-Allow-Origin': '*'
+						}
+					}
+				).then(res => {
+					console.log(res.data[0])
+				});
 
 				} else {
 					document.getElementById("swipes").innerHTML = 'You have zero swipes! Get outta here!';
@@ -231,5 +244,5 @@ const sendEvent = (encryptedID) => {
 		});
 };
 
-postE.addEventListener('click', sendDining);
-postD.addEventListener('click', sendEvent);
+// postE.addEventListener('click', sendDining);
+// postD.addEventListener('click', sendEvent);
