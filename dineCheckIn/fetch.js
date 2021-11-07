@@ -152,7 +152,7 @@ const sendDining = (encryptedID) => {
 		document.getElementById("name").innerHTML = 'Waiting to be scanned...';
 		document.getElementById("swipes").innerHTML = '';
 		document.getElementById("msg").innerHTML = '';
-	}, 3000);
+	}, 5000);
 	let msg = '';
 	axios.post(url +
 			'/checkDiningHallBalance', {
